@@ -12,7 +12,7 @@ const MapScreen = () => {
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
       <View style={tw`h-full`}>        
-        <View style={tw`h-1/2`}>
+        <View style={tw`h-1/2 `}>
             <MapComponent />
         </View>
         {/* <View style={tw`h-1/2`}>
