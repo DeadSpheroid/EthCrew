@@ -9,7 +9,7 @@ const data = [
     id: '1',
     title: 'Get a ride',
     icon: require('../assets/images/UberX-icon.webp'),
-    screen: 'Map',
+    screen: 'MapScreen',
   },
   {
     id: '2',
@@ -31,7 +31,7 @@ const NavOptions = () => {
         <TouchableOpacity
           //@ts-ignore
           showsHorizontalScrollIndicator={false}
-          onPress={() => navigation.navigate('Map')}
+          onPress={() => navigation.navigate(item.screen)}
           style={tw`bg-gray-300 p-5 pl-6 pb-8 pt-4 m-2 w-40 rounded-lg`}
         >
           <View style={tw`flex`}>
