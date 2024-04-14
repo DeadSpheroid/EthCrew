@@ -1,12 +1,12 @@
 export const carList = [
   {
     imgUrl: 'https://i.ibb.co/cyvcpfF/uberx.png',
-    service: 'UberX',
+    service: 'ZOYOX',
     multiplier: 1,
   },
   {
     imgUrl: 'https://i.ibb.co/YDYMKny/uberxl.png',
-    service: 'UberXL',
+    service: 'ZOYOXL',
     multiplier: 1.5,
   },
   {
