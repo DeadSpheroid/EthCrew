@@ -6,33 +6,84 @@ import Map from "@/components/Map";
 import Link from "next/link";
 import SideBar from "@/components/Sidebar";
 import { SidebarItem } from "@/components/Sidebar";
-// import { auth } from '../firebase';
+import detectEthereumProvider from "@metamask/detect-provider";
+import { useProviderhook } from "../context/provider";
+import contractJSON from "@/contract/abi.json";
+import ethers from "ethers";
+
 // import { onAuthStateChanged, signOut } from 'firebase/auth';
-// import { useRouter } from 'next/router';
+// import { useRouter } from 'nex t/router';
 
 export default function Home() {
-  //   const [user, setUser] = useState(null);
-  //   const router = useRouter();
+  const [contract, setContract] = useState({
+    provider: null,
+    contractObj: null,
+  });
+  const { account, setAccount } = useProviderhook();
+  const [bal, setBal] = useState("");
 
-  //   useEffect(() => {
-  //     return onAuthStateChanged(auth, user => {
-  //       if (user) {
-  //         setUser({
-  //           name: user.displayName,
-  //           photoUrl: user.photoURL,
-  //         });
-  //       } else {
-  //         setUser(null);
-  //         router.push('/login');
-  //       }
-  //     })
-  //   }, []);
+  async function ConnectBtn() {
+    try {
+      const account = await window.ethereum.request({
+        method: "eth_requestAccounts",
+      });
+      setAccount(account[0]);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (account !== "Not connected") {
+          // const contractProvider = new ethers.JsonRpcProvider(
+          //   process.env.NEXT_PUBLIC_SEPOLIA_URL
+          // );
+
+          console.log(window.ethereum);
+          const walletProvider = new ethers.BrowserProvider(window.ethereum);
+          // const walletProvider = await detectEthereumProvider();
+
+          if (walletProvider) {
+            console.log(walletProvider);
+            const Lottery = new ethers.Contract(
+              contractJSON.address,
+              contractJSON.abi,
+              walletProvider
+            );
+
+            setContract({ provider: walletProvider, contractObj: Lottery });
+
+            console.log(await Lottery.getSessionId());
+          } else {
+            console.error("Ethereum provider not available.");
+          }
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+
+    fetchData();
+  }, [account]);
 
   return (
     <>
       <div className="flex flex-row">
         <SideBar>
-          <SidebarItem text="hello" />
+          <SidebarItem
+            text={account ? account : "Connect to Metamask"}
+            icon={
+              <Image
+                src="/metamask-icon.png"
+                alt="metamaskIcon"
+                width={30}
+                height={30}
+                onClick={ConnectBtn}
+              />
+            }
+          />
         </SideBar>
 
         <div className="flex flex-col h-screen w-full">
