@@ -75,7 +75,7 @@ function Result() {
 
         <div className="border-t-2">
           <div className="bg-black text-white my-4 mx-4 py-4 text-center text-xl">
-            Confirm UberX
+            Confirm ZOYOX
           </div>
         </div>
       </div>

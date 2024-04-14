@@ -92,14 +92,14 @@ export default function Home() {
             <div className="flex justify-between items-center">
               <img
                 className="h-28"
-                src="https://i.ibb.co/ZMhy8ws/uber-logo.png"
+                src="2_cleanup.png"
               />
             </div>
             <div className="flex">
-              <div className="flex flex-col flex-1 bg-gray-200 m-1 h-32 items-center justify-center rounded-lg transform hover:scale-105 transition text-xl">
+              <div className="flex flex-col flex-1 bg-gray-200 m-1 h-32 items-center justify-center rounded-lg transform hover:scale-105 transition text-xl ">
                 <Link href="/search">
                   <img
-                    className="h-3/5"
+                    className="h-2/5 mt-12"
                     src="https://i.ibb.co/cyvcpfF/uberx.png"
                   />
                   Ride
