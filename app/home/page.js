@@ -9,7 +9,7 @@ import { SidebarItem } from "@/components/Sidebar";
 import detectEthereumProvider from "@metamask/detect-provider";
 import { useProviderhook } from "../context/provider";
 import contractJSON from "@/contract/abi.json";
-import ethers from "ethers";
+import {ethers} from "ethers";
 
 // import { onAuthStateChanged, signOut } from 'firebase/auth';
 // import { useRouter } from 'nex t/router';
